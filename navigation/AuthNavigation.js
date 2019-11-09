@@ -1,5 +1,6 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { fromRight } from "react-navigation-transitions";
 
 import Signup from "../screens/Auth/Signup";
 import Confirm from "../screens/Auth/Confirm";
@@ -14,7 +15,8 @@ const AuthNavigation = createStackNavigator(
     Confirm
   },
   {
-    headerMode: "none"
+    headerMode: "none",
+    transitionConfig: () => fromRight()
   }
 );
 

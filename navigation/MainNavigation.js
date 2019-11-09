@@ -3,6 +3,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import TabNavigation from "./TabNavigation";
 import PhotoNavigation from "./PhotoNavigation";
 import MessageNavigation from "./MessageNavigation";
+import { fromRight } from "react-navigation-transitions";
 
 const MainNavigation = createStackNavigator(
   {
@@ -12,7 +13,8 @@ const MainNavigation = createStackNavigator(
   },
   {
     headerMode: "none",
-    mode: "modal"
+    mode: "modal",
+    transitionConfig: () => fromRight()
   }
 );
 
