@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import styled from "styled-components";
+import { useMutation } from "react-apollo-hooks";
+import * as Facebook from "expo-facebook";
 import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
-import { useMutation } from "react-apollo-hooks";
 import { CREATE_ACCOUNT } from "./AuthQueries";
 
 const View = styled.View`
   justify-content: center;
   align-items: center;
   flex: 1;
+`;
+
+const FBContainer = styled.View`
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top-width: 1px;
+  border-color: ${props => props.theme.lightGreyColor};
+  border-style: solid;
 `;
 
 export default ({ navigation }) => {
@@ -64,6 +73,28 @@ export default ({ navigation }) => {
       setLoading(false);
     }
   };
+
+  const fbLogin = async () => {
+    try {
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+        "464980257471986",
+        {
+          permissions: ["public_profile"]
+        }
+      );
+      if (type === "success") {
+        const response = await fetch(
+          `https://graph.facebook.com/me?access_token=${token}`
+        );
+        Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View>
@@ -91,6 +122,14 @@ export default ({ navigation }) => {
           autoCorrect={false}
         />
         <AuthButton onPress={handleSignup} loading={loading} text="Sign up" />
+        <FBContainer>
+          <AuthButton
+            bgColor={"#2D4DA7"}
+            loading={false}
+            onPress={fbLogin}
+            text="Connect Facebook"
+          />
+        </FBContainer>
       </View>
     </TouchableWithoutFeedback>
   );
