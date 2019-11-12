@@ -5,8 +5,8 @@ import MainNavigation from "../navigation/MainNavigation";
 import AuthNavigation from "../navigation/AuthNavigation";
 
 export default () => {
-  const isLoggedIn = useIsLoggedIn();
-  // const isLoggedIn = true;
+  // const isLoggedIn = useIsLoggedIn();
+  const isLoggedIn = true;
   const logIn = useLogIn();
   const logOut = useLogOut();
   return (
