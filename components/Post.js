@@ -66,7 +66,7 @@ const Post = ({
 }) => {
   const [isLiked, setIsLiked] = useState(isLikedProp);
   const [likeCount, setLikeCount] = useState(likeCountProp);
-  const toggleLikeMutaton = useMutation(TOGGLE_LIKE, {
+  const [toggleLikeMutaton] = useMutation(TOGGLE_LIKE, {
     variables: {
       postId: id
     }
@@ -79,8 +79,10 @@ const Post = ({
     }
     setIsLiked(p => !p);
     try {
-      await toggleLikeMutaton();
-    } catch (e) {}
+      await toggleLikeMutaton(id);
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <Container>
