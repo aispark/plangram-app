@@ -4,6 +4,7 @@ import TabNavigation from "./TabNavigation";
 import PhotoNavigation from "./PhotoNavigation";
 import MessageNavigation from "./MessageNavigation";
 import { fromRight } from "react-navigation-transitions";
+import { stackStyles } from "./config";
 
 const MainNavigation = createStackNavigator(
   {
@@ -12,6 +13,11 @@ const MainNavigation = createStackNavigator(
     MessageNavigation
   },
   {
+    defaultNavigationOptions: {
+      headerStyle: {
+        ...stackStyles
+      }
+    },
     headerMode: "none",
     mode: "modal",
     transitionConfig: () => fromRight()
