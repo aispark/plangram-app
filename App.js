@@ -20,7 +20,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const preLoad = async () => {
-    await AsyncStorage.clear();
+    // await AsyncStorage.clear();
     try {
       await Font.loadAsync({
         ...Ionicons.font
@@ -35,6 +35,12 @@ export default function App() {
 
       const client = new ApolloClient({
         cache,
+        request: async operation => {
+          const token = await AsyncStorage.getItem("jwt");
+          return operation.setContext({
+            headers: { Authorization: `Bearer ${token}` }
+          });
+        },
         ...apolloClientOptions
       });
 
