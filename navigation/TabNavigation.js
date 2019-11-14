@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 
 import Home from "../screens/Home";
-import Search from "../screens/Search";
+import Search from "../screens/Tabs/Search";
 import Notifications from "../screens/Notifications";
 import Profile from "../screens/Profile";
 import MessagesLink from "../components/MessagesLink";
@@ -46,9 +46,7 @@ export default createBottomTabNavigator(
       }
     },
     Search: {
-      screen: stackFactory(Search, {
-        title: "Search"
-      }),
+      screen: stackFactory(Search),
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <NavIcon
