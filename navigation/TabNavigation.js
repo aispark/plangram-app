@@ -9,6 +9,7 @@ import Detail from "../screens/Detail";
 import Notifications from "../screens/Notifications";
 import Profile from "../screens/Tabs/Profile";
 import MessagesLink from "../components/MessagesLink";
+import UserDetail from "../screens/UserDetail";
 
 import { Platform } from "react-native";
 import NavIcon from "../components/NavIcon";
@@ -28,13 +29,20 @@ const stackFactory = (initialRoute, customConfig) =>
       Detail: {
         screen: Detail,
         navigationOptions: {
-          headerTintColor: styles.blackColor,
           title: "Photo"
+        }
+      },
+      UserDetail: {
+        screen: UserDetail,
+        navigationOptions: {
+          title: "User"
         }
       }
     },
     {
       defaultNavigationOptions: {
+        headerBackTitle: null,
+        headerTintColor: styles.blackColor,
         headerStyle: { ...stackStyles }
       },
       headerLayoutPreset: "center"
