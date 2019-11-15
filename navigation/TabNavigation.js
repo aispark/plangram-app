@@ -5,6 +5,7 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import Home from "../screens/Home";
 import Search from "../screens/Tabs/Search";
+import Detail from "../screens/Detail";
 import Notifications from "../screens/Notifications";
 import Profile from "../screens/Profile";
 import MessagesLink from "../components/MessagesLink";
@@ -107,7 +108,8 @@ export default createBottomTabNavigator(
           />
         )
       }
-    }
+    },
+    Detail
   },
   {
     tabBarOptions: {
