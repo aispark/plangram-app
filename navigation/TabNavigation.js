@@ -14,18 +14,29 @@ import { Platform } from "react-native";
 import NavIcon from "../components/NavIcon";
 import { stackStyles } from "./config";
 
+import styles from "../styles";
+
 const stackFactory = (initialRoute, customConfig) =>
   createStackNavigator(
     {
       InitialRoute: {
         screen: initialRoute,
         navigationOptions: {
-          ...customConfig,
-          headerStyle: { ...stackStyles }
+          ...customConfig
+        }
+      },
+      Detail: {
+        screen: Detail,
+        navigationOptions: {
+          headerTintColor: styles.blackColor,
+          title: "Photo"
         }
       }
     },
     {
+      defaultNavigationOptions: {
+        headerStyle: { ...stackStyles }
+      },
       headerLayoutPreset: "center"
     }
   );
@@ -108,8 +119,7 @@ export default createBottomTabNavigator(
           />
         )
       }
-    },
-    Detail
+    }
   },
   {
     tabBarOptions: {
