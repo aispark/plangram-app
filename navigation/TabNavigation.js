@@ -7,7 +7,7 @@ import Home from "../screens/Home";
 import Search from "../screens/Tabs/Search";
 import Detail from "../screens/Detail";
 import Notifications from "../screens/Notifications";
-import Profile from "../screens/Profile";
+import Profile from "../screens/Tabs/Profile";
 import MessagesLink from "../components/MessagesLink";
 
 import { Platform } from "react-native";
