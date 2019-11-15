@@ -55,6 +55,7 @@ export default createStackNavigator(
       headerStyle: {
         ...stackStyles
       }
-    }
+    },
+    headerLayoutPreset: "center"
   }
 );
